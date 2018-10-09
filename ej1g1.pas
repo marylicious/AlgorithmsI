@@ -1,9 +1,13 @@
+{Desarrolla un programa que dado un numero entero N y una potencia P, devuelva el numero redobdeado
+a la cifra segun la potencia indicada
+ej N= 25671, P=1000 devuelve 26000}
+
 Program ej1g1;
 Var 
     n,p,i,cont,auxp,auxn,redondeo,ndeallado:integer;
 Begin
  
- repeat
+ Repeat
  
   Writeln('Escriba numero N');
   Readln(n);
@@ -14,38 +18,39 @@ Begin
   if ((p<>0) and (n<>0)) then
     begin
       if ((n div p) > 9) then
-        begin
-        auxp:=p; cont:=0; auxn:= n;
-        while (auxp > 1) do
-          begin
-            auxp := auxp div 10;
-            cont := cont + 1;
-          end;
+        begin      
+         
+          auxp:=p; cont:=0; auxn:= n;
+         
+          while (auxp > 1) do
+            begin
+              auxp := auxp div 10;
+              cont := cont + 1;
+            end;
+          
+          for i:= 1 to cont do
+            begin
+              ndeallado := auxn mod 10;
+              auxn:= auxn div 10;
+            end;
+
+          if (ndeallado > 4) then
+              auxn := auxn+1;
         
-        for i:= 1 to cont do
-          begin
-            ndeallado := auxn mod 10;
-            auxn:= auxn div 10;
-          end;
+          redondeo := auxn * p;
 
-        if (ndeallado > 4) then
-            auxn := auxn+1;    
-                
-        redondeo := auxn * p;
-
-        writeln ('el redondeo de ', n, ' es ', redondeo);
+          writeln ('el redondeo de ', n, ' es ', redondeo);
         end 
         else 
         begin
-          writeln ('el redondeo de ', n, ' es ', n);
+            writeln ('el redondeo de ', n, ' es ', n);
         end;
     end;
+  
   readln;
-  until ((p=0) or (n=0));
+
+until ((p=0) or (n=0));
 
  
 End.
 
-{Desarrolla un programa que dado un numero entero N y una potencia P, devuelva el numero redobdeado
-a la cifra segun la potencia indicada
-ej N= 25671, P=1000 devuelve 26000}
