@@ -15,7 +15,6 @@ Begin
     begin
       if ((n div p) > 9) then
         begin
-                
         auxp:=p; cont:=0; auxn:= n;
         while (auxp > 1) do
           begin
@@ -30,9 +29,8 @@ Begin
           end;
 
         if (ndeallado > 4) then
-          begin
-            auxn := auxn+1;
-          end;        
+            auxn := auxn+1;    
+                
         redondeo := auxn * p;
 
         writeln ('el redondeo de ', n, ' es ', redondeo);
