@@ -1,5 +1,6 @@
-{  Elabora un programa que reciba un numero N e imprima la distancia entre 
-    cada par de primos continuos menores que N
+{  
+    Una compania desea transmitir datos por telefono pero estan preocupados
+    de 
 }
 
 Program ej2g1;
