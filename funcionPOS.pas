@@ -2,9 +2,11 @@ Program POS;
 //Programa que hace la misma funcion que el POS
 var
     s1,s2:string;
-    posicion,i,j: integer;
-    encontrada,noposible,nocoincidentes:boolean;
+    posicion,i,j,s: integer;
+    encontrada, nocoincidentes:boolean;
 Begin
+    
+    Repeat 
     Write('Introduzca string 1 '); Readln(s1);
     Write('Introduzca string 2 '); Readln(s2);
 
@@ -13,13 +15,11 @@ Begin
     posicion:=0; 
     i:=1; 
     encontrada:=false;
-    noposible:=false;
     
 
     //itera sobre S2
-    while((j<=length(s1)) or encontrada or noposible) do 
+    while((j<=length(s1)) and (encontrada=false)) do 
     begin
-        
         //busco la primera coincidencia
         if (s2[i] = s1[j]) then
         begin
@@ -33,7 +33,7 @@ Begin
             else
             begin
                 //itero sobre el resto de la string 2 para ver si los caracteres coinciden
-                while((i<=length(s2)) or (j<=length(s1)) or (nocoincidentes)) do
+                while((i<=length(s2)) and (j<=length(s1)) and (nocoincidentes=false)) do
                 begin
 
                     if(s2[i] = s1[j]) then
@@ -49,17 +49,13 @@ Begin
                         i:=1; //comenzar desde el primer caracter de s2
                        
                     end;
-
-                    //writeln('fuera del if i es   ', i, '  j es', j);
                 end;
 
-                if(i >length(s2)) then
+                if(posicion <> 0) then
                     encontrada:=true;
-                   
                 
-                if(j>length(s1)) then
-                    noposible:=true;
-
+                if(j>length(s1))then
+                    posicion:=0;
             end;
         end
         else
@@ -72,4 +68,9 @@ Begin
 
   
     Writeln('POS es ',posicion);
+
+    Write('Escribe 1 para salir  => '); Readln(s);
+
+
+    until (s=1);
 End.
