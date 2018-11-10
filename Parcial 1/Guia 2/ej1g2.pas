@@ -38,8 +38,6 @@ Begin
             j:=1;
             k:=1;
 
-            
-
             contadorPalabras:=contadorPalabras+1;
             finPalabra:= i;
 
