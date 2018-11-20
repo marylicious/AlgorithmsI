@@ -110,6 +110,63 @@ begin
     Minimo:=min;
 end;
 
+
+Function MinimoFilas(A:matriz;inif,inic,columnas,filas:integer;var posf,posc:integer):integer;
+var
+   i,j,min:integer;
+begin
+     min:= A[inif,inic];
+
+    writeln('inic =>', inic);
+    writeln('inif =>', inif);
+    writeln('min inicial=>', min);
+
+
+    //terminar fila comenzada
+
+    for i:=inif to filas do
+    begin
+         for j:=inic to inic do
+         begin
+            writeln('columnas comenzadas');
+            
+            writeln('A[j,i] es A[',i,',',j,'] => ',A[i,j]);
+
+              if ((A[i,j] < min)) then
+                begin
+                     posc:=j;
+                     posf:=i;
+
+                     min:= A[i,j];
+                    
+                     writeln('min en el if=>', min);
+                end;
+         end;
+    end;
+
+     for i:=1 to filas do
+     begin
+         for j:=inic+1 to columnas do
+         begin
+             writeln('columnas nuevas');
+            
+            writeln('A[i,j] es A[',i,',',j,'] => ',A[i,j]);
+
+              if ((A[i,j] < min)) then
+                begin
+                     posc:=j;
+                     posf:=i;
+
+                     min:= A[i,j];
+                    
+                     writeln('min en el if=>', min);
+                end;
+         end;
+     end;
+
+    MinimoFilas:=min;
+end;
+
 Procedure OrdAscColum(var A:matriz;columnas,filas:integer);
 var
    f,c,min,posf,posc:integer;
@@ -137,6 +194,32 @@ begin
      end;
 end;
 
+Procedure OrdAscFilas(var A:matriz;columnas,filas:integer);
+var
+   f,c,min,posf,posc:integer;
+begin
+     writeln('Ordenar Ascendente por Columnas usando seleccion directa');
+     writeln('');
+
+     posc:=1;
+     posf:=1;
+
+     for c:=1 to columnas do
+     begin
+          for f:=1 to filas do
+          begin
+               writeln('A[f,c] es A[',f,',',c,'] => ',A[f,c]);
+
+               min:= MinimoFilas(A,f,c,columnas,filas,posf,posc);
+               writeln('min es =>', min);
+
+               A[posf,posc]:= A[f,c];
+               A[f,c]:=min;
+
+            MostrarMatriz(A,columnas,filas);
+          end;
+     end;
+end;
 
 
 
@@ -211,16 +294,19 @@ Begin
     writeln('La matriz creada es:');
     MostrarMatriz(A,columnas,filas);
 
-    writeln('La matriz al reves es:');
-    MostrarAlReves(A,columnas,filas);
+    //writeln('La matriz al reves es:');
+    //MostrarAlReves(A,columnas,filas);
      
-    OrdAscColum(A,columnas,filas);
+    //OrdAscColum(A,columnas,filas);
+
+    OrdAscFilas(A,columnas,filas);
+
      
     writeln('La matriz ordenada ascendentemente es:');
     MostrarMatriz(A,columnas, filas);
 
-    writeln('La matriz recorrida en espiral es');
-    RecorridoEspiral(A,columnas,filas);
+    //writeln('La matriz recorrida en espiral es');
+    //RecorridoEspiral(A,columnas,filas);
      readln;
 
 
